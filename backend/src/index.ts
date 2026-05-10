@@ -24,10 +24,6 @@ app.use(express.json());
 app.use(cors());
 app.use(clerkMiddleware());
 
-app.get('/', (_, res) => {
-    res.send('Hello World!');
-});
-
 const publicDir = path.join(process.cwd(), "public");
 if (fs.existsSync(publicDir)) {
   app.use(express.static(publicDir));
