@@ -11,7 +11,7 @@ import path from "node:path";
 const env = getEnv();
 const app = express();
 
-const rawJson = express.json({
+const rawJson = express.raw({
     type: 'application/json',
     limit: '2mb',
 })
