@@ -7,6 +7,9 @@ import { getEnv } from "./lib/env";
 import keepAliveJob from "./lib/cron";
 import fs from "node:fs";
 import path from "node:path";
+import meRouter from "./routes/meRouter";
+import productRouter from "./routes/productRouter";
+import streamRouter from "./routes/streamRouter";
 
 const env = getEnv();
 const app = express();
@@ -27,6 +30,10 @@ app.use(clerkMiddleware());
 app.get("/health", (_req, res) => {
     res.status(200).json({ status: "ok" });
 });
+
+app.use("/api/me", meRouter);
+app.use("/api/product", productRouter);
+app.use("/api/stream", streamRouter);
 
 const publicDir = path.join(process.cwd(), "public");
 if (fs.existsSync(publicDir)) {
